@@ -57,6 +57,10 @@ class Foo
         echo "Hello\n";
     }
 }
+
+$ tree -L 1 hoge/hoge
+hoge/hoge
+└── foo.zep
 ```
 
 ### Build
