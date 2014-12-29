@@ -4,7 +4,11 @@
 
 ## boot2docker
 
-I tested in [boot2docker](https://github.com/boot2docker/boot2docker).
+I tested on [boot2docker](https://github.com/boot2docker/boot2docker).
+
+```
+$ boot2docker up
+```
 
 ## Usage
 
@@ -13,8 +17,6 @@ I tested in [boot2docker](https://github.com/boot2docker/boot2docker).
 ```
 $ docker pull shin1x1/zephir
 $ docker run shin1x1/zephir
-
-~/s/z/utils ❯❯❯ docker run shin1x1/zephir
 
  _____              __    _
 /__  /  ___  ____  / /_  (_)____
@@ -42,13 +44,26 @@ hoge
 └── hoge
 ```
 
+### Sample Code
+
+```
+$ vim hoge/hoge/foo.zep
+namespace Hoge;
+
+class Foo
+{
+    public static function hello()
+    {
+        echo "Hello\n";
+    }
+}
+```
+
 ### Build
 
 ```
 $ cd hoge
 $ docker run -v `pwd`:/work shin1x1/zephir zephir build
-make: Warning: File `clean' has modification time 1.1e+06 s in the future
-make: warning:  Clock skew detected.  Your build may be incomplete.
 Preparing for PHP compilation...
 Preparing configuration file...
 Compiling...
@@ -68,7 +83,7 @@ $ docker run -v `pwd`:/work shin1x1/zephir php -d extension=/work/ext/modules/ho
 hoge
 ```
 
-### execute hoge.so
+### execute with hoge.so
 
 ```
 $ docker run -v `pwd`:/work shin1x1/zephir php -d extension=/work/ext/modules/hoge.so -r 'Hoge\Foo::hello();'
